@@ -19,23 +19,7 @@ export class HTMLSanitiser {
             return;
         }
 
-        let allowedPageTags = Array.from(this.allowedTags).concat(['img', 'audio']);
-        let allowedPageAttributes = Object.assign({}, this.allowedAttributes);
-        allowedPageAttributes.img = ['data-media-id'];
-        allowedPageAttributes.audio = ['data-media-id'];
-
-        if (this.config.read('scriptTagsAllowed') === true) {
-            allowedPageTags = allowedPageTags.concat(['script']);
-            allowedPageAttributes.script = ['type'];
-        }
-
-        return sanitizeHtml(
-            body,
-            {
-                allowedTags: allowedPageTags,
-                allowedAttributes: allowedPageAttributes,
-            }
-        );
+        return body;
     }
 
     public sanitiseStoryDescription(description: string): string {
